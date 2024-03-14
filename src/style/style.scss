@@ -225,6 +225,13 @@ body {
     font-weight: 400;
 }
 
+.icon {
+    svg {
+        width: unset;
+        height: unset;
+    }
+}
+
 svg {
     fill: currentcolor;
     width: 15px;
