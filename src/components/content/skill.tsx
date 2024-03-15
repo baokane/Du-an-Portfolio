@@ -61,7 +61,7 @@ const Skill = () => {
                     <div className="inner_wrap">
                         <div className="leftbox">
                             <div className="arlo_tm_mini_title_holder">
-                                <h4>Some About my Abilities</h4>
+                                <h4>Kĩ năng Backend</h4>
                             </div>
                             <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since. Lorem Ipsum has been the industry. Lorem Ipsum has been the industry's standard dummy text since. Lorem Ipsum is simply.</p>
                         </div>

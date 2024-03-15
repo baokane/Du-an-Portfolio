@@ -23,17 +23,10 @@ const Project = () => {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const [dataDetail, setDataDetail] = useState<IProject | null>(null)
 
-    const showModal = () => {
-        setIsModalOpen(true);
-    };
-
-    const handleOk = () => {
-        setIsModalOpen(false);
-    };
-
-    const handleCancel = () => {
-        setIsModalOpen(false);
-    };
+    const handleCloseModal = () => {
+        setIsModalOpen(false)
+        setDataDetail(null)
+    }
 
     const dataProjects: IProject[] = [
         {
@@ -123,10 +116,7 @@ const Project = () => {
     ]
     return (
         <>
-            <Button type="primary" onClick={showModal}>
-                open modal
-            </Button>
-            <Modal title={dataDetail && dataDetail.title && `Dự án ${dataDetail.title}`} open={isModalOpen} onOk={handleOk} onCancel={handleCancel} footer={false} maskClosable={false}>
+            <Modal title={dataDetail && dataDetail.title && `Dự án ${dataDetail.title}`} open={isModalOpen} onOk={() => handleCloseModal()} onCancel={() => handleCloseModal()} footer={false} maskClosable={false}>
                 {dataDetail &&
                     <ul>
                         <li>Miêu tả: {dataDetail.detail.description}</li>
