@@ -1,9 +1,10 @@
 import desktopLogo from '@/assets/img/logo/desktop-logo.png'
 import logoReact from '@/assets/img/logo/logoReact.png'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { FaGithub } from "react-icons/fa";
 import { FaFacebook } from "react-icons/fa";
 import { SiGmail } from "react-icons/si";
+import { isMobile } from 'react-device-detect';
 
 interface IProps {
     hideLeftPart: boolean;
@@ -12,6 +13,23 @@ interface IProps {
 
 const LeftPart = (props: IProps) => {
     const [activeTab, setActiveTab] = useState<string>('home')
+
+    useEffect(() => {
+        const { hash } = window.location;
+        console.log('hash:', window.location)
+        if (hash) {
+            const tab = hash.replace('#', '')
+            setActiveTab(tab)
+
+            const section = document.querySelector(`${hash}`);
+            if (section) {
+                setTimeout(() => {
+                    section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }, 800)
+            }
+        }
+    }, [])
+
     const handleClickTab = (tab: string, event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
         event.preventDefault()
         setActiveTab(tab)
@@ -20,7 +38,7 @@ const LeftPart = (props: IProps) => {
             section.scrollIntoView({ behavior: 'smooth', block: 'start' });
             setTimeout(() => {
                 window.location.hash = tab
-            }, 1000)
+            }, 800)
         }
     }
     return (
@@ -75,13 +93,18 @@ const LeftPart = (props: IProps) => {
                         </ul>
                     </div>
                 </div>
-                <a
-                    className={props.hideLeftPart ? "arlo_tm_resize opened" : "arlo_tm_resize"}
-                    href="#"
-                    onClick={() => props.setHideLeftPart(!props.hideLeftPart)}
-                >
-                    <i className={props.hideLeftPart ? "xcon-angle-left opened" : "xcon-angle-left"} ></i>
-                </a>
+                {!isMobile &&
+                    <a
+                        className={props.hideLeftPart ? "arlo_tm_resize opened" : "arlo_tm_resize"}
+                        href="#"
+                        onClick={(e) => {
+                            e.preventDefault()
+                            props.setHideLeftPart(!props.hideLeftPart)
+                        }}
+                    >
+                        <i className={props.hideLeftPart ? "xcon-angle-left opened" : "xcon-angle-left"} ></i>
+                    </a>
+                }
             </div>
         </div>
     )

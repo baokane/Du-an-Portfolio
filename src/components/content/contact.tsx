@@ -28,7 +28,7 @@ const Contact = () => {
                         </div>
                         <div className="rightbox">
                             <div className="arlo_tm_contact_wrap">
-                                <div className="main_input_wrap">\
+                                <div className="main_input_wrap">
                                     <div style={{ height: '200px' }}></div>
                                     {/* <form action="http://frenify.com/" method="post" className="contact_form" id="contact_form">
                                         <div className="returnmessage" data-success="Your message has been received, We will contact you soon."></div>
